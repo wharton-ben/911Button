@@ -11,14 +11,6 @@ auth_token = os.environ['TWILIO_AUTH_TOKEN']
 
 client = Client(account_sid, auth_token)
 
-message = client.messages \
-    .create(
-        body = 'Hello Ben.\
-              This is a test of our emergency notification system.\
-              Please disregard this message.',
-        from_ = '############', #These will need to be replaced with an acutal value
-        to = '###########'
-    )
+number = client.pricing.v2.voice.numbers('###############').fetch()
 
-print(message.sid)
-
+print(number.outbound_call_prices)
